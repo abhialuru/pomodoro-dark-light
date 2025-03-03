@@ -43,7 +43,7 @@ function Pomodoro() {
         clearInterval(intervalId);
       }
     }
-  }, [running, intervalId]);
+  }, [running]);
 
   function handleControlBtn() {
     setRunning((prev) => !prev);
