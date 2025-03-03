@@ -1,0 +1,58 @@
+.pomodoro-container {
+  position: fixed;
+  top: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 10px 20px;
+  z-index: 9999px;
+  box-shadow: 0px 0px 10px black inset;
+  transition: background-color 0.3s, color 0.3s; // Smooth transition between themes
+
+  &.dark {
+    background-color: #2a2a2a; // Dark background for the container
+    color: white; // White text for dark theme
+    border: 1px solid #555; // A slightly darker border for dark theme
+    box-shadow: 0px 0px 10px white inset;
+
+    .time {
+      color: white; // Ensure the time text is white
+    }
+
+    h1 {
+      color: #ddd; // Lighter text for heading in dark theme
+    }
+
+    .control-btn {
+      filter: brightness(0.5); // Darken the control buttons in dark theme
+      &:hover {
+        filter: brightness(0.8); // Hover effect for the buttons
+      }
+    }
+  }
+
+  h1 {
+    font-size: 20px;
+    text-decoration: underline;
+    color: black; // Default heading color (you can keep this or change it in dark theme)
+  }
+
+  .time {
+    font-size: 50px;
+  }
+
+  .controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+  }
+
+  .control-btn {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: filter 0.2s ease-in-out; // Smooth transition for the button hover effect
+  }
+}
