@@ -5,7 +5,7 @@ import { myContext } from "../../Context";
 
 function Pomodoro() {
   const { theme } = useContext(myContext);
-  const [timeRemaining, setTimeRemaining] = useState(1500); // 25 minutes in seconds
+  const [timeRemaining, setTimeRemaining] = useState(1500);
   const [running, setRunning] = useState(false);
   const [intervalId, setIntervalId] = useState<number | null>(null);
 
@@ -19,37 +19,34 @@ function Pomodoro() {
   };
 
   useEffect(() => {
-    // If the timer is running, start the interval
     if (running) {
       const id = setInterval(() => {
         setTimeRemaining((prevTime) => {
           if (prevTime <= 1) {
-            clearInterval(id); // Clear the interval when the time reaches 0
-            setRunning(false); // Stop the timer
-            alert("Pomodoro complete! Starting a new round."); // Show alert when timer completes
-            setTimeRemaining(1500); // Reset the timer to 25 minutes
+            clearInterval(id);
+            setRunning(false);
+            alert("Pomodoro complete! Starting a new round.");
+            setTimeRemaining(1500);
             return 0;
           }
-          return prevTime - 1; // Decrease time by 1 second
+          return prevTime - 1;
         });
       }, 1000);
 
-      setIntervalId(id); // Store the interval ID
+      setIntervalId(id);
 
-      // Cleanup: Clear the interval when the timer is paused or when the component unmounts
       return () => {
         clearInterval(id);
       };
     } else {
-      // If the timer is paused, clear the interval if it exists
       if (intervalId) {
         clearInterval(intervalId);
       }
     }
-  }, [running]); // Depend only on 'running', to avoid overlapping intervals
+  }, [running, intervalId]);
 
   function handleControlBtn() {
-    setRunning((prev) => !prev); // Toggle the running state
+    setRunning((prev) => !prev);
   }
 
   return (
